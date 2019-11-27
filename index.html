@@ -1,9 +1,103 @@
 <!DOCTYPE html>
 <html>
+
+<style>
+body, html {
+  height: 100%;
+}
+body {
+	/*background-image: url("https://live.staticflickr.com/65535/49051218001_daea9359bc_b.jpg");*/
+	background-position: center;
+  	background-repeat: no-repeat;
+  	background-size: cover;
+  	height: 100%;
+}
+</style>
 <body>
 
-<h1>GEC</h1>
 
 
+<script type="text/javascript">
+let photos = [
+'https://live.staticflickr.com/65535/49051431182_8dbc64d7a5_k.jpg',
+'https://live.staticflickr.com/65535/49051431177_ce02ce4a91_k.jpg',
+'https://live.staticflickr.com/65535/49051431172_2e5c06c0bc_k.jpg',
+'https://live.staticflickr.com/65535/49051218011_64c21650c7_k.jpg',
+'https://live.staticflickr.com/65535/49051218001_7a5a2a09bc_k.jpg',
+'https://live.staticflickr.com/65535/49050711428_a7793fed65_k.jpg',
+'https://live.staticflickr.com/65535/49050711423_31c307138e_k.jpg',
+'https://live.staticflickr.com/65535/49052169006_7b8d222261_k.jpg',
+'https://live.staticflickr.com/65535/49051439027_66d1b7b0aa_k.jpg',
+'https://live.staticflickr.com/65535/49050719223_b49d4c8d96_k.jpg',
+'https://live.staticflickr.com/65535/49050719073_e43215fdf3_k.jpg',
+'https://live.staticflickr.com/65535/49051223941_60f1f32364_k.jpg',
+'https://live.staticflickr.com/65535/49051226941_f19288540b_k.jpg',
+'https://live.staticflickr.com/65535/49051440962_6dcd247dc6_k.jpg',
+'https://live.staticflickr.com/65535/49050716628_55b6f64986_k.jpg',
+'https://live.staticflickr.com/65535/49051436677_4284898a53_k.jpg',
+'https://live.staticflickr.com/65535/49051223371_410f6bee31_k.jpg',
+'https://live.staticflickr.com/65535/49051223381_ab87c6d2c2_k.jpg',
+'https://live.staticflickr.com/65535/49050716488_5306a0d66a_k.jpg',
+'https://live.staticflickr.com/65535/49051435677_6eab0f8a39_k.jpg',
+'https://live.staticflickr.com/65535/49050715353_bae526919d_k.jpg',
+'https://live.staticflickr.com/65535/49050715523_949051f85a_k.jpg',
+'https://live.staticflickr.com/65535/49051223281_33a11b4cc7_k.jpg',
+'https://live.staticflickr.com/65535/49051222371_d1b52881f2_k.jpg',
+'https://live.staticflickr.com/65535/49050715498_2505dba64c_k.jpg'
+];
+
+
+
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <div class="div"></div>
+    
+    <script>
+    
+            $.ajax({
+                   type: "GET",
+                   url: "https://www.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=2c45c27714bec652243d7e68e869506e&photoset_id=72157711964481417&user_id=80995589%40N00&format=json&nojsoncallback=1",
+                   processData: true,
+                   data: {},
+                   dataType: "json",
+                   error: function(e){
+                    console.log(e);                    
+                   },
+                   success: function (data) {
+                      console.log('success');
+                      showPhoto(data);
+                   }
+            });
+    function showPhoto(data)
+    {
+    	let photoList = data.photoset.photo;
+    	
+    	let photoListLength = photoList.length;
+
+    	let randomPhoto = Math.floor(Math.random() * photoListLength); 
+    	console.log(randomPhoto);
+    	console.log(photoList[randomPhoto]);
+    	cssPhoto(photoList[randomPhoto]);
+
+
+    }
+    function cssPhoto(photo)
+    {
+    	console.log('================')
+    	if(photo)
+    	{
+    		let photoURL = 'https://live.staticflickr.com/'+photo.server+'/'+photo.id+'_'+photo.secret+'_b.jpg';
+	    	console.log(photoURL);
+	    	document.body.style.backgroundImage = 'url('+photoURL+')';
+    	}
+    	else
+    	{
+    		console.log('error');
+    	}
+    	
+
+    }
+    </script>
 </body>
 </html>
