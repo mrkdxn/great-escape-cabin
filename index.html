@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-36176731-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-36176731-2');
+</script>
 
 <style>
 body, html {
@@ -14,42 +23,6 @@ body {
 }
 </style>
 <body>
-
-
-
-<script type="text/javascript">
-let photos = [
-'https://live.staticflickr.com/65535/49051431182_8dbc64d7a5_k.jpg',
-'https://live.staticflickr.com/65535/49051431177_ce02ce4a91_k.jpg',
-'https://live.staticflickr.com/65535/49051431172_2e5c06c0bc_k.jpg',
-'https://live.staticflickr.com/65535/49051218011_64c21650c7_k.jpg',
-'https://live.staticflickr.com/65535/49051218001_7a5a2a09bc_k.jpg',
-'https://live.staticflickr.com/65535/49050711428_a7793fed65_k.jpg',
-'https://live.staticflickr.com/65535/49050711423_31c307138e_k.jpg',
-'https://live.staticflickr.com/65535/49052169006_7b8d222261_k.jpg',
-'https://live.staticflickr.com/65535/49051439027_66d1b7b0aa_k.jpg',
-'https://live.staticflickr.com/65535/49050719223_b49d4c8d96_k.jpg',
-'https://live.staticflickr.com/65535/49050719073_e43215fdf3_k.jpg',
-'https://live.staticflickr.com/65535/49051223941_60f1f32364_k.jpg',
-'https://live.staticflickr.com/65535/49051226941_f19288540b_k.jpg',
-'https://live.staticflickr.com/65535/49051440962_6dcd247dc6_k.jpg',
-'https://live.staticflickr.com/65535/49050716628_55b6f64986_k.jpg',
-'https://live.staticflickr.com/65535/49051436677_4284898a53_k.jpg',
-'https://live.staticflickr.com/65535/49051223371_410f6bee31_k.jpg',
-'https://live.staticflickr.com/65535/49051223381_ab87c6d2c2_k.jpg',
-'https://live.staticflickr.com/65535/49050716488_5306a0d66a_k.jpg',
-'https://live.staticflickr.com/65535/49051435677_6eab0f8a39_k.jpg',
-'https://live.staticflickr.com/65535/49050715353_bae526919d_k.jpg',
-'https://live.staticflickr.com/65535/49050715523_949051f85a_k.jpg',
-'https://live.staticflickr.com/65535/49051223281_33a11b4cc7_k.jpg',
-'https://live.staticflickr.com/65535/49051222371_d1b52881f2_k.jpg',
-'https://live.staticflickr.com/65535/49050715498_2505dba64c_k.jpg'
-];
-
-
-
-
-</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <div class="div"></div>
     
@@ -72,31 +45,22 @@ let photos = [
     function showPhoto(data)
     {
     	let photoList = data.photoset.photo;
-    	
     	let photoListLength = photoList.length;
-
     	let randomPhoto = Math.floor(Math.random() * photoListLength); 
-    	console.log(randomPhoto);
-    	console.log(photoList[randomPhoto]);
     	cssPhoto(photoList[randomPhoto]);
-
 
     }
     function cssPhoto(photo)
     {
-    	console.log('================')
     	if(photo)
     	{
     		let photoURL = 'https://live.staticflickr.com/'+photo.server+'/'+photo.id+'_'+photo.secret+'_b.jpg';
-	    	console.log(photoURL);
 	    	document.body.style.backgroundImage = 'url('+photoURL+')';
     	}
     	else
     	{
     		console.log('error');
     	}
-    	
-
     }
     </script>
 </body>
