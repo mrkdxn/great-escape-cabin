@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
+<link rel='stylesheet' href='css/main.css' type='text/css' media='all' />
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36176731-2"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="js/main.js"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -9,59 +12,7 @@
 
   gtag('config', 'UA-36176731-2');
 </script>
-
-<style>
-body, html {
-  height: 100%;
-}
-body {
-	/*background-image: url("https://live.staticflickr.com/65535/49051218001_daea9359bc_b.jpg");*/
-	background-position: center;
-  	background-repeat: no-repeat;
-  	background-size: cover;
-  	height: 100%;
-}
-</style>
 <body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <div class="div"></div>
-    
-    <script>
-    
-            $.ajax({
-                   type: "GET",
-                   url: "https://www.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=2c45c27714bec652243d7e68e869506e&photoset_id=72157711964481417&user_id=80995589%40N00&format=json&nojsoncallback=1",
-                   processData: true,
-                   data: {},
-                   dataType: "json",
-                   error: function(e){
-                    console.log(e);                    
-                   },
-                   success: function (data) {
-                      console.log('success');
-                      showPhoto(data);
-                   }
-            });
-    function showPhoto(data)
-    {
-    	let photoList = data.photoset.photo;
-    	let photoListLength = photoList.length;
-    	let randomPhoto = Math.floor(Math.random() * photoListLength); 
-    	cssPhoto(photoList[randomPhoto]);
-
-    }
-    function cssPhoto(photo)
-    {
-    	if(photo)
-    	{
-    		let photoURL = 'https://live.staticflickr.com/'+photo.server+'/'+photo.id+'_'+photo.secret+'_b.jpg';
-	    	document.body.style.backgroundImage = 'url('+photoURL+')';
-    	}
-    	else
-    	{
-    		console.log('error');
-    	}
-    }
-    </script>
+    <section id="photos"></section>
 </body>
 </html>
