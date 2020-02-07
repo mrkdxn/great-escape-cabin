@@ -1,0 +1,30 @@
+
+* {
+	font-family: 'Crimson Text', serif;
+}
+h1{
+	text-align: center;
+	font-size: 33px;
+	color: #000;
+	margin-top: 20px;
+	position: relative;
+	z-index: 10;
+}
+#photoList {
+	width: 80%;
+	margin: 0 auto;
+}
+
+#photoList img {
+	width: 100%;
+	max-width: 1024px;
+	margin: 40px 0;
+}
+#cover {
+	width: 100%;
+	height: auto;
+	margin-top: -90px;
+}
+#cover img {
+	width: 100%;
+}

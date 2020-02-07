@@ -1,6 +1,6 @@
 window.addEventListener('load', function () {
    	let fotos = new Photos();
-	fotos.checkStorage();
+	fotos.init();
 });
 
 const Photos = function () {
@@ -11,7 +11,26 @@ const Photos = function () {
 Photos.prototype = {
 
 	flickrData : '',
+	coverPhoto : '',
 
+
+	init: function()
+	{
+		this.buildElements();
+		this.checkStorage();
+	},
+	buildElements: function() 
+	{
+		let containerDiv = document.getElementById('photos');
+		cover = document.createElement('div');
+		cover.setAttribute('id', 'cover');
+		containerDiv.appendChild(cover);
+
+		photoList = document.createElement('div');
+		photoList.setAttribute('id', 'photoList');
+		containerDiv.appendChild(photoList);
+
+	},
 
 	checkStorage : function()
 	{
@@ -19,6 +38,7 @@ Photos.prototype = {
 		{
 			this.flickrData = JSON.parse(localStorage.getItem('flickrData'));
 			this.showPhotos();
+			console.log(this.flickrData);
 		}
 	else
 		{
@@ -29,23 +49,44 @@ Photos.prototype = {
 
 	showPhotos: function()
     {
-    	
-      let photos = this.flickrData.photoset.photo;
-    	for ( image in photos)
-    	{
-    		this.addPhoto(this.buildPhotoURL(photos[image]));
-    	}	
+    	this.setCoverPhoto();
+      	let photos = this.flickrData.photoset.photo;
+	    	for ( image in photos)
+	    	{
+	    		this.addPhoto(this.buildPhotoURL(photos[image]));
+	    	}	
     },
     buildPhotoURL: function(photo)
 		{
-			return 'https://live.staticflickr.com/'+photo.server+'/'+photo.id+'_'+photo.secret+'_b.jpg';
+			
+			let thePhoto = 'https://live.staticflickr.com/'+photo.server+'/'+photo.id+'_'+photo.secret+'_b.jpg';
+			if(photo.id == this.coverPhoto)
+			{
+				console.log(thePhoto);
+				this.buildCoverPhoto(thePhoto);
+			}
+			return thePhoto;
 		},
 	addPhoto: function(photo)
 		{
-			let containerDiv = document.getElementById('photos');
+			let containerDiv = document.getElementById('photoList');
 			var img = document.createElement('img'); 
 		    img.src = photo; 
 		    containerDiv.appendChild(img); 
+		},
+	setCoverPhoto: function()
+		{
+			this.coverPhoto = this.flickrData.photoset.primary;
+		},
+
+	buildCoverPhoto: function(cover)
+		{
+			console.log(cover);
+			let containerDiv = document.getElementById('cover');
+			let theFirstChild = containerDiv.firstChild
+			var img = document.createElement('img'); 
+		    img.src = cover; 
+		    containerDiv.insertBefore(img, theFirstChild); 	
 		},
 
     getFlickerData: function()
@@ -61,6 +102,7 @@ Photos.prototype = {
 	           console.log(e);                    
 	           },
 	           success: function (data) {
+	           	console.log(data);
 				let fotos = new Photos();
 				fotos.flickrData = data;
 				fotos.showPhotos(data);
