@@ -2,7 +2,6 @@
 window.addEventListener('load', function () {
     let fotos = new Photos();
     fotos.init();
-    var lightbox = new SimpleLightbox('.photo a', { /* options */ });
 });
 
 const Photos = function () {
@@ -57,6 +56,8 @@ Photos.prototype = {
         {
             this.addPhoto(photos[image]);
         }
+
+        var lightbox = new SimpleLightbox('.photo a', { /* options */ });
     },
     addPhoto: function (photo)
     {
