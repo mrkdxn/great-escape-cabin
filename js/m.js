@@ -21,7 +21,7 @@ Photos.prototype = {
     buildPhotoURL: function(photo)
     {
 
-        let thePhoto = 'https://live.staticflickr.com/'+photo.server+'/'+photo.id+'_'+photo.secret+'_b.jpg';
+        let thePhoto = 'https://live.staticflickr.com/'+photo.server+'/'+photo.id+'_'+photo.secret;
         return thePhoto;
     },
     buildFlickrObject: function()
@@ -64,11 +64,11 @@ Photos.prototype = {
         var element = document.createElement("div");
         element.className = 'photo';
         var img = document.createElement('img');
-        img.src = photo.url;
+        img.src = photo.url+'_e.jpg';
         img.title = photo.title;
         element.appendChild(img);
         document.getElementById('photos').appendChild(element);
-        $(img).wrap("<a href='"+img.src+"'></a>'");
+        $(img).wrap("<a href='"+photo.url+'_b.jpg'+"'></a>'");
 
     },
     flickrAPI: function ()
