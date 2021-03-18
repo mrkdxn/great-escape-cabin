@@ -22,9 +22,10 @@ Photos.prototype = {
 	buildElements: function() 
 	{
 		let containerDiv = document.getElementById('photos');
-		cover = document.createElement('div');
-		cover.setAttribute('id', 'cover');
-		containerDiv.appendChild(cover);
+		photoDiv = document.createElement('div');
+		photoDiv.setAttribute('id', 'cover');
+		photoDiv.setAttribute('class', 'grid');
+		containerDiv.appendChild(photoDiv);
 
 		photoList = document.createElement('div');
 		photoList.setAttribute('id', 'photoList');
@@ -34,7 +35,7 @@ Photos.prototype = {
 
 	checkStorage : function()
 	{
-		if(localStorage.getItem('flickrData'))
+		if(localStorage.getItem('flickrDataXXX'))
 		{
 			this.flickrData = JSON.parse(localStorage.getItem('flickrData'));
 			this.showPhotos();
@@ -52,8 +53,9 @@ Photos.prototype = {
     	this.setCoverPhoto();
       	let photos = this.flickrData.photoset.photo;
 	    	for ( image in photos)
+
 	    	{
-	    		this.addPhoto(this.buildPhotoURL(photos[image]));
+	    		this.addPhoto(this.buildPhotoURL(photos[image]), photos[image].title);
 	    	}	
     },
     buildPhotoURL: function(photo)
@@ -63,16 +65,18 @@ Photos.prototype = {
 			if(photo.id == this.coverPhoto)
 			{
 				console.log(thePhoto);
-				this.buildCoverPhoto(thePhoto);
+				//this.buildCoverPhoto(thePhoto);
 			}
 			return thePhoto;
 		},
-	addPhoto: function(photo)
+	addPhoto: function(photo, title)
 		{
 			let containerDiv = document.getElementById('photoList');
 			var img = document.createElement('img'); 
-		    img.src = photo; 
-		    containerDiv.appendChild(img); 
+		    img.src = photo;
+		    img.title = title;
+		    containerDiv.appendChild(img);
+			//img.appendChild('<p>' + title + '</p>');
 		},
 	setCoverPhoto: function()
 		{
@@ -94,7 +98,7 @@ Photos.prototype = {
 		console.log('flickr 2');
 		$.ajax({
 	        type: "GET",
-	        url: "https://www.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=2c45c27714bec652243d7e68e869506e&photoset_id=72157711964481417&user_id=80995589%40N00&format=json&nojsoncallback=1",
+	        url: "https://www.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=2c45c27714bec652243d7e68e869506e&photoset_id=72157715632321882&user_id=80995589%40N00&extras=tags,description&format=json&nojsoncallback=1",
 	        processData: true,
 	        data: {},
 	        dataType: "json",

@@ -1,30 +1,55 @@
 
 * {
-	font-family: 'Crimson Text', serif;
-}
-h1{
-	text-align: center;
-	font-size: 33px;
-	color: #000;
-	margin-top: 20px;
-	position: relative;
-	z-index: 10;
-}
-#photoList {
-	width: 80%;
-	margin: 0 auto;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: 'Cormorant Garamond', sans-serif;
 }
 
-#photoList img {
-	width: 100%;
-	max-width: 1024px;
-	margin: 40px 0;
+html,
+body {
+	height: 100vh;
+	padding-top: 1vh;
 }
-#cover {
-	width: 100%;
-	height: auto;
-	margin-top: -90px;
+
+body {
+	display: grid;
+	grid-template-rows: min-content auto min-content;
 }
-#cover img {
-	width: 100%;
+
+/* for beautification purpose */
+
+body {
+	text-align: center;
 }
+
+header,
+footer {
+	font-size: 1.5rem;
+}
+
+header,
+footer,
+div {
+	padding: 10px;
+}
+
+img {
+	height: 200px;
+	max-width: 250px;
+	padding: 10px;
+	flex: 1 auto;
+}
+
+.gallery {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: center;
+}
+h1 {
+	color: #333;
+}
+
+
+

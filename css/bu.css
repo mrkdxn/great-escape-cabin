@@ -1,0 +1,60 @@
+
+* {
+    font-family: 'Crimson Text', serif;
+}
+h1{
+    text-align: center;
+    font-size: 33px;
+    color: #000;
+    margin-top: 20px;
+    position: relative;
+    z-index: 10;
+}
+#photoList {
+    width: 80%;
+    margin: 0 auto;
+}
+
+#photoList img {
+    width: 100%;
+    max-width: 1024px;
+    margin: 40px 0;
+}
+#cover {
+    width: 100%;
+    height: auto;
+    margin-top: -90px;
+}
+#cover img {
+    width: 100%;
+}
+.grid-item  { width: 200px }
+.grid-item > img { width: 100%}
+.grid-item--width2 { width: 400px; }
+
+
+
+* { box-sizing: border-box; }
+
+body { font-family: sans-serif; }
+
+/* ---- grid ---- */
+
+.grid {
+    max-width: 1200px;
+}
+
+/* clearfix */
+.grid:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+/* ---- grid-item ---- */
+
+.grid-item {
+    width: 300px;
+    height: auto;
+    float: left;
+}
