@@ -1,8 +1,7 @@
-console.log(document.location);
-if (document.location.protocol == 'http:')
-{
-    document.location.href = 'https://'+document.location.pathname;
-}
+// if (document.location.protocol == 'http:')
+// {
+//     document.location.href = 'https://'+document.location.pathname;
+// }
 
 window.addEventListener('load', function () {
     let fotos = new Photos();
@@ -15,10 +14,10 @@ const Photos = function () {
 Photos.prototype = {
 
     flickrData : '',
-    timestamp : '',
+    currentTimestamp : '',
     init: function()
     {
-        if(localStorage.getItem('flickrData'))
+        if(localStorage.getItem('flickrData') && this.checkFlickrTime() == 'valid')
         {
             this.buildFlickPage();
         }
@@ -48,12 +47,13 @@ Photos.prototype = {
             myFlickrObject.push(obj);
         }
         localStorage.setItem('flickrData',  JSON.stringify(myFlickrObject));
-        this.setTimestamp();
+
         this.buildFlickPage();
     },
     buildFlickPage: function ()
     {
       console.log('build page');
+
         let flickStorage = JSON.parse(localStorage.getItem('flickrData'));
         console.log(flickStorage);
 
@@ -66,12 +66,26 @@ Photos.prototype = {
         var lightbox = new SimpleLightbox('.photo a', {  });
         lazyLoadInstance.update();
     },
+    checkFlickrTime: function()
+    {
+        let flickrTime = parseInt(localStorage.getItem('flickrTime'));
+        if(flickrTime)
+        {
+            var d = new Date();
+            var n = d.getTime();
+            if(n - flickrTime > 10000 || document.location.search.indexOf('rebuild') > 0)
+            {
+                return 'expired';
+            }
+        }
+        return 'valid';
+    },
     setTimestamp: function ()
     {
         var d = new Date();
         var n = d.getTime();
         localStorage.setItem('flickrTime', n);
-        this.timestamp = n;
+        this.currentTimestamp = n;
     },
     addPhoto: function (photo)
     {
@@ -104,6 +118,7 @@ Photos.prototype = {
                 if (xmlhttp.status == 200) {
                     let fotos = new Photos();
                     fotos.flickrData = JSON.parse(xmlhttp.responseText);
+                    fotos.setTimestamp();
                     fotos.buildFlickrObject();
                 }
                 else if (xmlhttp.status == 400) {
