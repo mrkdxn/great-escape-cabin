@@ -1,8 +1,3 @@
-// if (document.location.protocol == 'http:')
-// {
-//     document.location.href = 'https://'+document.location.pathname;
-// }
-
 window.addEventListener('load', function () {
     let fotos = new Photos();
     fotos.init();
@@ -17,6 +12,7 @@ Photos.prototype = {
     currentTimestamp : '',
     init: function()
     {
+        console.log(this.checkFlickrTime());
         if(localStorage.getItem('flickrData') && this.checkFlickrTime() == 'valid')
         {
             this.buildFlickPage();
@@ -69,14 +65,12 @@ Photos.prototype = {
     checkFlickrTime: function()
     {
         let flickrTime = parseInt(localStorage.getItem('flickrTime'));
-        if(flickrTime)
+        var d = new Date();
+        var n = d.getTime();
+
+        if(n - flickrTime > 10000 || isNaN(flickrTime) === true || document.location.search.indexOf('rebuild') > 0)
         {
-            var d = new Date();
-            var n = d.getTime();
-            if(n - flickrTime > 10000 || document.location.search.indexOf('rebuild') > 0)
-            {
-                return 'expired';
-            }
+            return 'expired';
         }
         return 'valid';
     },
@@ -94,7 +88,6 @@ Photos.prototype = {
         element.className = 'photo';
         // img
         var img = document.createElement('img');
-        //img.src = photo.url+'_m.jpg';
         img.title = photo.title;
         img.className = 'lazy';
         img.setAttribute('data-src', photo.url+'_m.jpg');
