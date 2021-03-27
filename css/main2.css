@@ -33,6 +33,13 @@ footer,
 div {
 	padding: 10px;
 }
+a {
+	text-decoration: none;
+	font-size: 20px;
+}
+a:hover {
+	text-decoration: underline;
+}
 
 img {
 	height: 200px;
@@ -49,6 +56,42 @@ img {
 }
 h1 {
 	color: #333;
+	font-size: 24px;
+}
+.first {
+	height: 180px;
+	max-width: 230px;
+	padding: 10px;
+	flex: 1 auto;
+	margin: 20px;
+	border: 1px solid #333;
+}
+.first > div {
+	background-color: #bfbfbf;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.first > div.about {
+	position: relative;
+	top: -158px;
+	right: 0px;
+	background-color: #000;
+	opacity: 0;
+	color: #fff;
+}
+.first > div.about:hover {
+	opacity: 1;
+}
+.first > div.about a {
+	color: #fff;
+}
+.container {
+	max-width: 800px;
+	width: 75%;
+	text-align: left;
+	margin: 0 auto;
 }
 
 
