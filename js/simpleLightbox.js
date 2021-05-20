@@ -43,7 +43,7 @@ console.log('simpleLightbox');
                         navText: ['&lsaquo;', '&rsaquo;'],
                         captions: true,
                         captionDelay: 0,
-                        captionSelector: 'img',
+                        captionSelector: 'self',
                         captionType: 'attr',
                         captionsData: 'title',
                         captionPosition: 'bottom',

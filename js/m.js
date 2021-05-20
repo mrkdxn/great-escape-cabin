@@ -86,6 +86,7 @@ Photos.prototype = {
         // div
         var element = document.createElement("div");
         element.className = 'photo';
+
         // img
         var img = document.createElement('img');
         img.title = photo.title;
@@ -93,10 +94,27 @@ Photos.prototype = {
         img.setAttribute('data-src', photo.url+'_m.jpg');
         element.appendChild(img);
         document.getElementById('photos').appendChild(element);
+
+        // overlay div
+        var overlay = document.createElement("div");
+        overlay.className = 'overlayDiv';
+        element.appendChild(overlay);
+        var t = document.createElement('div');
+        t.className = 'overlayText';
+        t.innerHTML = '<h3>' + photo.title + '</h3>';
+        overlay.appendChild(t);
+
+        // var d = document.createElement('p');
+        // d.innerHTML =  photo.description;
+        // t.appendChild(d);
+
         // ahref
         var a = document.createElement('a');
         a.href = photo.url+'_b.jpg';
-        this.wrap(img, a);
+        a.title = photo.title;
+        this.wrap(t, a);
+
+
     },
     wrap: function (el, wrapper) {
         el.parentNode.insertBefore(wrapper, el);
@@ -111,6 +129,7 @@ Photos.prototype = {
                 if (xmlhttp.status == 200) {
                     let fotos = new Photos();
                     fotos.flickrData = JSON.parse(xmlhttp.responseText);
+                    console.log(fotos.flickrData);
                     fotos.setTimestamp();
                     fotos.buildFlickrObject();
                 }
