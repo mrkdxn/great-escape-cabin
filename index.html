@@ -21,6 +21,20 @@
     <link rel='stylesheet' href='css/simpleLightbox.css' type='text/css' media='all' />
     <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script>
+        window.OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+            OneSignal.init({
+                appId: "8fab26ae-c186-40d9-8345-8ed540319eae",
+                safari_web_id: "web.onesignal.auto.29ad6177-53c3-46b5-8017-0e7b95131b37",
+                notifyButton: {
+                    enable: true,
+                },
+            });
+        });
+    </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36176731-2"></script>
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
